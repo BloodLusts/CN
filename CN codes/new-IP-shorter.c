@@ -52,7 +52,7 @@ int main()
 
     if(octet[0]>=0 && octet[0]<128)
     {
-       printf("\nBelongs to class A\n");
+       printf("\nIt belongs to class A\n");
        Anding(octet,classA);
     }
     else if(octet[0]>=128 && octet[0]<192)
