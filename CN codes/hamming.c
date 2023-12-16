@@ -2,89 +2,49 @@
 #include <math.h>
 int main()
 {
-	int d[7],i,j=0;
-	printf("Enter a data bit:");
-	for(i=0;i<7;i++)
+	int data[11];
+	printf("\nEnter the data: \n");
+	for (int i = 0; i < 11; i++)
 	{
-		scanf("%d",&d[i]);
+		scanf("%d", &data[i]);
 	}
-	int c[11];
-	for(i=0;i<11;i++)
+	printf("\nEntered data is: ");
+	for (int i = 0; i < 11; i++)
 	{
-		if(i==0||i==1||i==3||i==7)
+		printf("%d", data[i]);
+	}
+	int a[4];
+	a[0] = data[0] ^ data[2] ^ data[4] ^ data[6] ^ data[8] ^ data[10];
+	a[1] = data[1] ^ data[2] ^ data[5] ^ data[6] ^ data[9] ^ data[10];
+	a[2] = data[3] ^ data[4] ^ data[5] ^ data[6];
+	a[3] = data[7] ^ data[8] ^ data[9] ^ data[10];
+	printf("\nReductant bits are : ");
+	for (int i = 0; i < 4; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	int dec = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		dec += pow(2, i) * a[i];
+	}
+	printf("\n%d element is wrong.\nAfter correction:", dec - 1);
+	for (int i = 0; i < 11; i++)
+	{
+		if (i == dec - 1)
 		{
-			c[i]=0;
+			if (data[i] == 1)
+				data[i] = 0;
+			else
+				data[i] = 1;
 		}
-		else
+		
+	}
+	printf("\nData after correction: ");
+		for (int i = 0; i < 11; i++)
 		{
-			c[i]=d[j];
-			j++;
+			printf("%d", data[i]);
 		}
-	}
-	printf("\n\nAfter adding r1,r2,r3,r4 as 0:");
-	for(i=0;i<11;i++)
-	{
-		printf("%d ",c[i]);
-	}
-	c[0]=c[0]^c[2]^c[4]^c[6]^c[8]^c[10];
-	c[1]=c[1]^c[2]^c[5]^c[6]^c[9]^c[10];
-	c[3]=c[3]^c[4]^c[5]^c[6];
-	c[7]=c[7]^c[8]^c[9]^c[10];
-	printf("\n\nAfter finding r1,r2,r3,r4:");
-	for(i=0;i<11;i++)
-	{
-		printf("%d ",c[i]);
-	}
-	
-	c[0]=c[0]^c[2]^c[4]^c[6]^c[8]^c[10];
-	c[1]=c[1]^c[2]^c[5]^c[6]^c[9]^c[10];
-	c[3]=c[3]^c[4]^c[5]^c[6];
-	c[7]=c[7]^c[8]^c[9]^c[10];
-	
-	int bitod[4],k=0,sum=0;
-	for(i=0;i<11;i++)
-	{
-		if(i==0||i==1||i==3||i==7)
-		{
-			bitod[k]=c[i];
-			k++;
-		}
-	}
-	printf("\n\nRepeat finding of r1,r2,r3,r4 for binary to decimal:");
-	for(i=0;i<4;i++)
-	{
-		printf("%d ",bitod[i]);
-	}
-	for(i=0;i<4;i++)
-	{
-		sum+=(pow(2,i)*bitod[i]);
-	}
-	int decimal=sum-1;
-	printf("\n\nThe binary to decimal is:%d",decimal+1);
-	
-	if(decimal==-1)
-	{
-		printf("\n\nFinal Bit:");
-		for(i=0;i<11;i++)
-	{
-		printf("%d ",c[i]);
-	}
-	}
-	else
-	{
-		if(c[decimal]==1)
-		{
-			c[decimal]==0;
-		}
-		else
-		{
-			c[decimal]==1;
-		}
-		printf("\n\nThe reductant bit %d is replace:");
-	for(i=0;i<11;i++)
-	{
-		printf("%d ",c[i]);
-	}
-	}
+
 	return 0;
 }
