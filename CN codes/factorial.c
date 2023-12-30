@@ -11,7 +11,7 @@ int main() {
     for(int i=0;i<n;i++){
         scanf("%d",&a[i]);
     }
-
+//nothing
     int c[24];
     
     for(int j=0;j<24;j++){
